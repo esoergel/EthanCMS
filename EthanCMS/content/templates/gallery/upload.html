@@ -1,0 +1,15 @@
+{% extends "gallery/base.html" %}
+
+{% block footer %}{% endblock %}
+
+{% block title %}Upload Images - Gallery{% endblock %}
+
+{% block subheader %}Upload Images to the Server{% endblock %}
+
+{% block body %}
+<form enctype="multipart/form-data" method="post">{% csrf_token %}
+    {{form}}
+    <input type="submit" value="Upload Image">
+    <!-- <input type="file" multiple> -->
+</form>
+{% endblock %}

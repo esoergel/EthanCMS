@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% comment %}
+For these to work, Twitter boostrap must be provided.
+Change the links if necessary.
+
+BLOCK OPTIONS ARE:
+{% extends "content-base.html" %}
+{% block title %}{% endblock %}
+{% block header %}{% endblock %}
+{% block subheader %}{% endblock %}
+{% block body %}{% endblock %}
+
+{% block override_body %}{% endblock %}
+{% block override_stylesheets %}{% endblock %}
+{% block add_to_head %}{% endblock %}
+f{% block override_js %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% endcomment %}
+
+{% block head %}
+    <title>
+        {% block title %}Content Manager{% endblock %}
+    </title>
+
+    {% block override_stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/static/css/content.css">
+    {% endblock %}
+
+    {% block add_to_head %}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="hero-unit">
+        <h1>{% block header %}Content Manager{% endblock %}</h1>
+        <p>{% block subheader %}Add and edit pages, manage images.{% endblock %}</p>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    {% block override_js %}
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/content.js"></script>
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+{% endblock %}

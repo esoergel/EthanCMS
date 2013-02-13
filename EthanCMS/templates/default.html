@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>{% block title %}{{page.title}}{% endblock %}</title>
+{% endblock %}
+
+
+{% block body %}
+<p>page.parent: {{page.parent}}</p>
+<p>page.body_html: {{page.body_html}}</p>
+<p>page.created: {{page.created}}</p>
+<p>page.modified: {{page.modified}}</p>
+<p>page.url: {{page.url}}</p>
+
+<p>page.title: {{page.title}}</p>
+<p>page.sub_title: {{page.sub_title}}</p>
+
+<p>page.body: {{page.body}}</p>
+<p>page.slug: {{page.slug}}</p>
+<p>page.tags: {{page.tags}}</p>
+<p>page.children: {{page.children}}</p>
+{% endblock %}
+

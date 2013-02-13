@@ -1,0 +1,25 @@
+{% comment %}
+
+BLOCK OPTIONS ARE:
+{% extends "barebones.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block body %}{% endblock %}
+
+{% endcomment %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{% block title %} Ethan Soergel {% endblock %}
+	</title>
+	{% block head %}{% endblock %}
+</head>
+
+
+<body>
+{% block body %}{% endblock %}
+</body>
+</html>

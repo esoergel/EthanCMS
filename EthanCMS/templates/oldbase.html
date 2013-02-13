@@ -1,0 +1,116 @@
+{% comment %}
+
+BLOCK OPTIONS ARE:
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block body %}{% endblock %}
+
+{% block override_body %}{% endblock %}
+{% block override_stylesheets %}{% endblock %}
+{% block add_to_head %}{% endblock %}
+{% block override_js %}{% endblock %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% endcomment %}
+
+{% autoescape off %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{% block title %} Ethan Soergel {% endblock %}
+	</title>
+
+	{% block override_stylesheets %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://fonts.googleapis.com/css?family=Mrs+Saint+Delafield|Josefin+Sans:400,300|Quicksand:400,300|Julius+Sans+One|Share+Tech|The+Girl+Next+Door|Tangerine:400,700|Calligraffitti" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+	{% endblock %}
+
+	{% block add_to_head %}
+	{% endblock %}
+
+</head>
+
+
+<body>
+<div id="header">
+{% block header %}
+	<a href="/" id="header-contents">
+		<h1>Ethan Soergel</h1>
+		<p>I probably won't use this space that much, I kinda just wanted to check out how it looks.</p>
+	</a>
+{% endblock %}
+</div>
+
+
+{% block override_body %}
+<div class="container xrow" id="below-header">
+	<div class="hidden-desktop mobilebar">
+		<div class="mobilebar-links">
+			<a href="/projects/">Projects</a>
+			<a href="/blog/">Blog</a>
+			<a href="/contact/">Contact</a>
+			<a href="/about/">About me</a>
+		</div>
+	</div>
+
+	<div class="span2 visible-desktop sidebar">
+		<div data-spy="affix" data-offset-top="230" class="sidebar-content">
+		<!-- <div class="sidebar-content"> -->
+		{% block sidebar %}
+			<div class="sidebar-links">
+				<a href="/projects/">Projects</a>
+				<a href="/blog/">Blog</a>
+				<a href="/contact/">Contact</a>
+				<a href="/about/">About me</a>
+			</div>
+			<a href="/">
+				<img class="site-logo img-circle" src="/static/img/site-logo.png">
+			</a>
+		{% endblock %}
+		</div>
+	</div>
+
+	<div class="span10" id="body-main">
+		<div id="body-content">
+		{% block body %}
+			<div>
+				Look at all the exciting stuff I have to share!
+			</div>
+		{% endblock %}
+		</div>
+	</div>
+
+	<div class="hidden-desktop mobilebar">
+		<div class="mobilebar-links">
+			<a href="/projects/">Projects</a>
+			<a href="/blog/">Blog</a>
+			<a href="/contact/">Contact</a>
+			<a href="/about/">About me</a>
+		</div>
+		<a href="/">
+			<img class="site-logo img-circle" src="/static/img/site-logo.png">
+		</a>
+	</div>
+</div>
+
+{% endblock %}
+
+	{% block override_js %}
+	<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+	{% endblock %}
+
+	<div id="footer">
+	{% block footer %}
+	{% endblock %}
+	</div>
+</body>
+</html>
+{% endautoescape %}

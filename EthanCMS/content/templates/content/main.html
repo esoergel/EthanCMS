@@ -1,0 +1,10 @@
+{% extends "content/base.html" %}
+
+{% block content %}
+    {% for page in object_list %}
+        <a href="edit/page:{{page.url}}">
+            <h2>{{page.title}}</h2>
+            <p>{{page.body|truncatewords_html:10}}</p>
+        </a>
+    {% endfor %}
+{% endblock %}

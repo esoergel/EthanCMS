@@ -1,0 +1,52 @@
+{% comment %}
+
+BLOCK OPTIONS ARE:
+{% extends "base.html" %}
+{% block head %}{% endblock %}
+{% block body %}{% endblock %}
+
+{% endcomment %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css" type="text/css">
+    {% block head %}{% endblock %}
+</head>
+
+
+<body>
+{% if request.user.is_staff %}
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+        {% if params.view_site %}
+            <a class="brand" href="/">View Site</a>
+        {% else %}
+            <a class="brand" href="{{content.cms_root}}">Manage Site</a>
+        {% endif %}
+
+            <ul class="nav">
+            {% if params.edit_page %}
+                <li><a title="Edit the current page" href="/content/edit/page:{{page.url}}">Edit Page</a></li>
+            {% elif params.view_page %}
+                <li><a title="View the current page on the main site" href="{{page.url}}">View Page</a></li>
+            {% endif %}
+                <li><a title="Make a new page" href="/content/add/">New Page</a></li>
+                <li><a title="Make a new page as a child of this page" href="/content/add_child:{{page.url}}">Make Child Page</a></li>
+                <li class="divider-vertical"></li>
+                <li><a href="{{content.cms_root}}gallery/">Gallery</a></li>
+                <li><a href="{{content.cms_root}}gallery/select/">Select Images</a></li>
+                <li><a href="{{content.cms_root}}gallery/upload/">Upload Images</a></li>
+                <li class="divider-vertical"></li>
+            </ul>
+            <p class="navbar-text pull-right"><a href="/logout/">Logout</a></li>
+        </div>
+    </div>
+{% endif %}
+
+{% block body %}{% endblock %}
+</body>
+</html>

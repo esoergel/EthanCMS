@@ -1,0 +1,122 @@
+{% extends "content/base.html" %}
+
+
+{% block title %}Edit - {{object.title}} - Content Manager{% endblock %}
+
+{% block subheader %}Editing the post titled {{object.title}}{% endblock %}
+
+{% block add_to_head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/post-edit.css">
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript" src="/static/js/markdown/Markdown.Converter.js"></script>
+    <script type="text/javascript" src="/static/js/markdown/Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="/static/js/markdown/Markdown.Editor.js"></script>
+    <!-- // <script type="text/javascript" src="/static/js/content.js"></script> -->
+    <script type="text/javascript">
+        (function () {
+            var converter = new Markdown.Converter();
+
+            var help = function () {
+                $('#markdown-help').modal('show');
+            }
+            var options = {
+                helpButton: { handler: help },
+                strings: { quoteexample: "whatever you're quoting, put it right here" }
+            };
+            var editor = new Markdown.Editor(converter, '', options);
+
+            editor.run();
+        })();
+    </script>
+
+    <script type="text/javascript">
+    </script>
+{% endblock %}
+
+    parent
+    children
+    body_html
+    url
+    created
+    modified
+
+    # basic options
+    title
+    sub_title
+    body
+
+    # advanced options
+    slug
+    tags
+    template
+
+{% block content %}
+<div class="container" id="edit-entry">
+<form method="post" id="entry">{% csrf_token %}
+    <table class="table table-condensed" id="entry-options">
+        <div class="text-error">{{form.errors}}</div>
+        <tr>
+            <td>Title:</td><td>{{form.title}}</td>
+            <td>{{form.title.errors}}</td><td><button type="submit" class="btn btn-primary btn-large pull-right">Save Changes</button></td>
+        </tr>
+        <tr>
+            <td>Subtitle:</td><td>{{form.sub_title}}</td>
+            <td class="c2">URL Slug:</td><td>{{form.slug}}</td>
+        </tr>
+        <tr>
+            <td>Template:</td><td>{{form.template}}</td>
+            <td class="c2">Tags:</td><td>{{form.tags}}</td>
+        </tr>
+    </table>
+
+    <div id="edit-body">
+        <div id="markdown">
+            <div id="wmd-button-bar"></div>
+            <textarea class="wmd-input" id="wmd-input" name="body">{{object.body}}</textarea>
+        </div>
+
+
+        <div id="html-output">
+            <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        </div>
+
+    </div>
+
+    <button type="submit" id="last-submit-button" class="btn btn-primary btn-large pull-right">Save Changes</button>
+
+</form>
+</div>
+
+
+<div id="markdown-help" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>Markdown Help</h3>
+    </div>
+    <div class="modal-body">
+        <p>Enter text using Markdown.  You can find examples about how it works <a href="http://daringfireball.net/projects/markdown/dingus">here</a> (check out the syntax cheatsheet on the right).</p>
+        <ul><strong>Here are some key points about syntax:</strong>
+            <li>Hit enter twice (leave a blank line) to start a new paragraph.</li>
+            <li>End a line with two or more spaces for a line break</li>
+            <li># Header 1 (big)</li>
+            <li>## Header 2 (less big)</li>
+            <li>###### Header 6 (smallest header)</li>
+            <li>*italic*</li>
+            <li>**bold**</li>
+            <li>[link](http://url.com/ "Title")</li>
+            <li>![alt text](/path/to/img.jpg "Title")</li>
+            <li>> blockquotes</li>
+            <li>--- makes a horizontal line</li>
+        </ul>
+        <p>For more, check out the aforementioned <a href="http://daringfireball.net/projects/markdown/dingus">link</a>.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "gallery/base.html" %}
+
+{% block title %}
+    Choose Images - Gallery
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript" src="/static/js/gallery-select.js"></script>
+{% endblock %}
+
+{% block override_body %}
+
+    <div class="image-selector">
+        <ul class="image-html">
+        </ul>
+        <ul class="image-markdown">
+        </ul>
+        <div class="selector-buttons btn-group" data-toggle="buttons-radio">
+            <button class="btn btn-inverse html">HTML</button>
+            <button class="btn btn-inverse markdown">Markdown</button>
+        </div>
+    </div>
+
+    <div class="selector-main">
+        <div class="hero-unit">
+            <h1>Gallery</h1>
+            <p>Select images to add to your project.</p>
+        </div>
+
+        <ul class="thumbnails">
+        {% for image in images %}
+            <li class="span4" name="{{image.name}}">
+                <div class="thumbnail">
+                    <img src="{{image.url}}" alt="{{image.name}}">
+                    <!-- <h3>Thumbnail label</h3> -->
+                    <!-- <p>Thumbnail caption...</p> -->
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

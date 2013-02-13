@@ -1,0 +1,24 @@
+{% extends "gallery/base.html" %}
+
+{% block title %}
+    All Images - Gallery
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <ul class="thumbnails">
+        {% for image in images %}
+            <li class="span3">
+                <div class="thumbnail">
+                    <img src="{{image.url}}" alt="{{image.name}}">
+                    <!-- <h3>Thumbnail label</h3> -->
+                    <!-- <p>Thumbnail caption...</p> -->
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
